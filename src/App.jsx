@@ -3,6 +3,7 @@ import { ChakraProvider } from '@chakra-ui/react';
 import { Box,Button,Text,grid,Flex } from '@chakra-ui/react';
 import SpecialFood from './components/SpecialFood';
 import GameOver from './components/GameOver';
+import App from './main';
 
 const gridSize = 20 
 const SnakeGame = ()=>{
@@ -13,5 +14,5 @@ const [gameInterval,setGameInterval]=useState;
 const [gameSpeed,setGameSpeed] = useState(10);
 const [gameStarted,setGameStarted] = useState(false);
 }
- 
+ export default App
 
