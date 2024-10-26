@@ -12,6 +12,6 @@ const generateFood = ()=>{
                 
             } while (snake.some(segment => segment.x === newFood.x && segment.y === newFood.y));
         
-            return newFood;
+         
         }
-       
+ 
