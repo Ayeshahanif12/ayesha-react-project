@@ -1,7 +1,10 @@
 import { useState, useEffect } from 'react'
 import { ChakraProvider } from '@chakra-ui/react';
-import { Box, Button, Text, grid, Flex } from '@chakra-ui/react';
+import { Box, Button, Text, grid, Flex,VStack} from '@chakra-ui/react';
 import SpecialFood from './components/SpecialFood';
+import GameBoard from './components/GameBoard';
+import Snake from './components/Snake';
+import GameUtils from'./u';
 
 const gridSize = 20
 const App = () => {

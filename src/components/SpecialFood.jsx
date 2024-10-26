@@ -8,8 +8,8 @@ const SpecialFood = ({ specialFood }) => {
       border="2px solid red"
       gridColumn={specialFood.x}
       gridRow={specialFood.y}
-      w="20px"
-      h="20px"
+      width="20px"
+      height="20px"
     />
   );
 };
