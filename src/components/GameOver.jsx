@@ -4,7 +4,7 @@ export default function GameOver({
   finalScore,
   setIsGameOver,
   setIsPlaying,
-  setJustStarted,
+  setgameStarted,
   setScore,
 }) {
   const [highScore, setHighScore] = useState(0);
@@ -22,8 +22,11 @@ export default function GameOver({
       setHighScore(finalScore);
     }
   }, [finalScore, highScore]);
+ // https://github.com/menard-codes/snakes-game/blob/main/src/SnakesGame/GameOverModal.tsx
+ // the link from where i have taken this game over container
 
-  return (
+ 
+  return (                                                
     <div id="game-over-container" onClick={handleGameReset}>
       <div id="game-over">
         <h2>Game Over</h2>
@@ -36,7 +39,7 @@ export default function GameOver({
         <p className="click-container">(Click anywhere to continue)</p>
         <p>Current High Score: {highScore}</p>
       </div>
-    </div>
+    </div>                            // here the game over container will be built
   );
 }     
 

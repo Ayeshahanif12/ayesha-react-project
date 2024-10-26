@@ -4,6 +4,7 @@ import { Box, Button, Text, grid, Flex, VStack } from '@chakra-ui/react';
 import SpecialFood from './components/SpecialFood';
 import GameBoard from './components/GameBoard';
 import Snake from './components/Snake';
+import GameLogic from './Utils/GameLogic'
 
 
 
@@ -16,12 +17,13 @@ const App = () => {
     const [gameSpeed, setGameSpeed] = useState(10);
     const [gameStarted, setGameStarted] = useState(false);
     const [highScore, setHighScore] = useState(0);
+
     return (
-        <GameBoard snake={snake} specialFood={specialFood}></GameBoard>
+        <GameBoard snake={snake} specialFood={specialFood}></GameBoard> // formation of gameboard
     )
 }
 
-const startGame = () => {
+const startGame = () => {                  //starting of game
     if (!gameStarted) {
         gameStarted = true;
         instructionText.style.display = 'none';
@@ -32,7 +34,7 @@ const startGame = () => {
 
 
     }
-    const resetGame = () => {
+    const resetGame = () => {           // reset game
         updateHighScore();
         stopGame();
         food = { ...generateFood() };
