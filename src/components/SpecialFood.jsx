@@ -4,7 +4,7 @@ import { Box } from '@chakra-ui/react';
 const SpecialFood = ({ specialFood }) => {
   return (
     <Box
-      bg="gold"
+      bg="red "
       border="2px solid red"
       gridColumn={specialFood.x}
       gridRow={specialFood.y}
