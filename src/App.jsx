@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { ChakraProvider } from '@chakra-ui/react';
-import { Box, Button, Text, grid, Flex, VStack } from '@chakra-ui/react';
+import { Box,Center, Button, Text, grid, Flex, VStack } from '@chakra-ui/react';
 import SpecialFood from './components/SpecialFood';
 import GameBoard from './components/GameBoard';
 import Snake from './components/Snake';
@@ -55,8 +55,9 @@ const App = () => {
             <Text color="yellow" fontSize="2xl">Score: {score}</Text>
             <Text color="yellow" fontSize="2xl">High Score: {highScore}</Text>
           </Box>
-          <GameBoard snake={snake} food={food} gridSize={gridSize} isGameOver={GameOver} />
-          {GameOver && <Button onClick={() => setisGameOver(false)}>Restart Game</Button>}
+          <GameBoard snake={snake} food={specialFood}  GameOver={GameOver} />
+          <GameOver resetGame={resetGame}/>
+          {GameOver && <Button onClick={() => setGameOver(false)}>Restart Game</Button>}
         </VStack>
         {!gameStarted && (
           <Text id="instruction-text" color="black" textAlign="center" fontSize="xl">
