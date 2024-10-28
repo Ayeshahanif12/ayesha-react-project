@@ -3,7 +3,7 @@ import { Box, Center } from "@chakra-ui/react";
 import Snake from "./Snake";
 import SpecialFood from "./SpecialFood";
 
-const GameBoard = ({ snake, specialFood }) => {
+export default function  GameBoard({ snake, specialFood }){
     return (
         <Box
         display="flex"                // Enable flexbox
@@ -14,8 +14,8 @@ const GameBoard = ({ snake, specialFood }) => {
         >
         <Box
             id="GameBoard"
-            width="500px"
-            height="500px"
+            width="400px"
+            height="400px"
             display="grid"
             gridTemplateColumns={`repeat(${20}, 1fr)`}
             gridTemplateRows={`repeat(${20}, 1fr)`}     // 20 is the gridSize
@@ -26,9 +26,11 @@ const GameBoard = ({ snake, specialFood }) => {
         >
             <Snake snake={snake} />
             <SpecialFood specialFood={specialFood} />
+            {isGameOver && <GameOver />}
+
         </Box>
         </Box>
     );
 };
 
-export default GameBoard;
+

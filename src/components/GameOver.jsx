@@ -1,34 +1,20 @@
-import React, { useState, useEffect } from 'react';
+// src/components/GameOver.js
+import React from 'react';
+import { Center, Box, Text } from '@chakra-ui/react';
 
-export default function GameOver({
-  finalScore,
-  setIsGameOver,
-  setIsPlaying,
-  setgameStarted,
-  setScore,
-}) {
-  const [highScore, setHighScore] = useState(0);
-
-  const handleGameReset = () => {
-    setIsGameOver(false);
-    setIsPlaying(true);
-    setgameStarted(true);
-    setScore(0);
-  };
-
-  // Set the high score if the current score beats it
-  useEffect(() => {
-    if (finalScore > highScore) {
-      setHighScore(finalScore);
-    }
-  }, [finalScore, highScore]);
- // https://github.com/menard-codes/snakes-game/blob/main/src/SnakesGame/GameOverModal.tsx
- // the link from where i have taken this game over container
-
- 
-  return (                                                
-    <div id="game-over-container" onClick={handleGameReset}>
-      <div id="game-over">
+export default function GameOver({ resetGame }) {
+  return (
+    <Center
+      pos="absolute"
+      top="0"
+      left="0"
+      w="100%"
+      h="100%"
+      bg="rgba(0, 0, 0, 0.6)"
+      onClick={resetGame}
+    >
+      <Box bg="white" p={5} borderRadius="md" boxShadow="lg">
+        <Text fontSize="2xl" fontWeight="bold">Game Over</Text>
         <h2>Game Over</h2>
         <p className="final-score">
           Your Final Score: <span>{finalScore}</span>
@@ -36,14 +22,12 @@ export default function GameOver({
         {finalScore > highScore && finalScore > 0 && (
           <p className="congratulate">🏆 You beat the high score! 🏆</p>
         )}
-        <p className="click-container">(Click anywhere to continue)</p>
-        <p>Current High Score: {highScore}</p>
-      </div>
-    </div>                            // here the game over container will be built
+        <Text>Click to Restart</Text>
+      </Box>
+    </Center>
   );
-}     
+}
 
-
-
-
-
+ 
+                                                
+    
