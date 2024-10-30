@@ -2,6 +2,7 @@ import React from "react";
 import { Box, Center } from "@chakra-ui/react";
 import Snake from "./Snake";
 import SpecialFood from "./SpecialFood";
+import GameOver from "./GameOver";
 
 export default function  GameBoard({ snake, specialFood }){
     return (
@@ -26,7 +27,7 @@ export default function  GameBoard({ snake, specialFood }){
         >
             <Snake snake={snake} />
             <SpecialFood specialFood={specialFood} />
-            {isGameOver && <GameOver />}
+            {GameOver && <GameOver />}
 
         </Box>
         </Box>

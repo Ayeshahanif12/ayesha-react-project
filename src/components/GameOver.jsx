@@ -1,8 +1,7 @@
-// src/components/GameOver.js
 import React from 'react';
-import { Center, Box, Text } from '@chakra-ui/react';
+import { Center, Box, Text, Button } from '@chakra-ui/react';
 
-export default function GameOver({ resetGame }) {
+export default function GameOver({ resetGame, score, highScore }) {
   return (
     <Center
       pos="absolute"
@@ -13,21 +12,14 @@ export default function GameOver({ resetGame }) {
       bg="rgba(0, 0, 0, 0.6)"
       onClick={resetGame}
     >
-      <Box bg="white" p={5} borderRadius="md" boxShadow="lg">
+      <Box bg="white" p={5} borderRadius="md" boxShadow="lg" textAlign="center">
         <Text fontSize="2xl" fontWeight="bold">Game Over</Text>
-        <h2>Game Over</h2>
-        <p className="final-score">
-          Your Final Score: <span>{finalScore}</span>
-        </p>
-        {finalScore > highScore && finalScore > 0 && (
-          <p className="congratulate">🏆 You beat the high score! 🏆</p>
+        <Text fontSize="lg">Your Final Score: <span>{score}</span></Text>
+        {score > highScore && score > 0 && (
+          <Text fontSize="lg" color="green.500" mt={2}>🏆 You beat the high score! 🏆</Text>
         )}
-        <Text>Click to Restart</Text>
+        <Button mt={4} colorScheme='teal' onClick={resetGame}> Restart Game</Button>
       </Box>
     </Center>
   );
 }
-
- 
-                                                
-    
