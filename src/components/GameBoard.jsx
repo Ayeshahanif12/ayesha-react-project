@@ -1,37 +1,24 @@
-import React from "react";
-import { Box, Center } from "@chakra-ui/react";
-import Snake from "./Snake";
-import SpecialFood from "./SpecialFood";
-import GameOver from "./GameOver";
+import React from 'react';
+import { Box } from '@chakra-ui/react';
+import Snake from './Snake.jsx';
+import Food from './Food.jsx';
 
-export default function  GameBoard({ snake, specialFood }){
-    return (
-        <Box
-        display="flex"                // Enable flexbox
-            justifyContent="center"       // Center horizontally
-            alignItems="center"           // Center vertically
-            height="100vh"                // Full viewport height
-            bg="gray"                // Optional: background color for contrast
-        >
-        <Box
-            id="GameBoard"
-            width="400px"
-            height="400px"
-            display="grid"
-            gridTemplateColumns={`repeat(${20}, 1fr)`}
-            gridTemplateRows={`repeat(${20}, 1fr)`}     // 20 is the gridSize
-            border="10px solid black"
-            bg="lightyellow"
-            marginInline="auto"
-            marginBlock="1.5rem"
-        >
-            <Snake snake={snake} />
-            <SpecialFood specialFood={specialFood} />
-            {GameOver && <GameOver />}
-
-        </Box>
-        </Box>
-    );
+const GameBoard = ({ snake, food, gridSize }) => {
+  return (
+    <Box
+      id="gameBoard"
+      width="400px"
+      height="400px"
+      display="grid"
+      gridTemplateColumns={`repeat(${gridSize}, 1fr)`}
+      gridTemplateRows={`repeat(${gridSize}, 1fr)`}
+      border="10px solid black"
+      bg="white"
+    >
+      <Snake snake={snake} />
+      <Food food={food} />
+    </Box>
+  );
 };
 
-
+export default GameBoard;

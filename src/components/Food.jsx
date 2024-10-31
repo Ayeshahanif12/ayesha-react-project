@@ -1,7 +1,7 @@
 import React from 'react';
 import { Box } from '@chakra-ui/react';
 
-const Snake = ({ snake }) => {
+const Snake = ({ snake,map }) => {
   return (
     <>
       {snake.map((segment, index) => (
