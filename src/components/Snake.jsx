@@ -13,7 +13,7 @@ const Snake = ({ snake = [] }) => {
       {snake.map((segment, index) => (
         <Box
           key={index}
-          bg="green"
+          bg="darkgreen"
           border="1px solid darkgreen"
           gridColumn={segment.x}
           gridRow={segment.y}
