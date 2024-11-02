@@ -1,7 +1,13 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Box } from '@chakra-ui/react';
 
-const Snake = ({ snake }) => {
+const Snake = ({ snake = [] }) => {
+  const [ currentSnake, setCurrentSnake] = useState(snake);
+
+  useEffect(() => {
+    setCurrentSnake(snake);
+  }, [snake])
+ 
   return (
     <>
       {snake.map((segment, index) => (

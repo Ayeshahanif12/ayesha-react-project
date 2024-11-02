@@ -1,25 +1,37 @@
 import React, { useState, useEffect } from 'react';
 import { ChakraProvider, Box, Text, VStack, Center } from '@chakra-ui/react';
 import GameBoard from './components/GameBoard';
-import { generateFood, checkCollisions, increaseSpeed } from './gameUtils';
+import { generateFood, checkCollisions, increaseSpeed } from './Utils/GameLogic';
 
 const gridSize = 20;
 const initialSpeed = 200;
 
-const App = () => {
-  const [snake, setSnake] = useState([{ x: 10, y: 10 }]);
+const App = ({title, snakeProp}) => {
+  debugger;
+  const [snake, setSnake] = useState();
   const [direction, setDirection] = useState('right');
-  const [food, setFood] = useState(generateFood(gridSize, snake));
+  const [food, setFood] = useState();
   const [score, setScore] = useState(0);
   const [highScore, setHighScore] = useState(0);
   const [gameSpeed, setGameSpeed] = useState(initialSpeed);
   const [gameInterval, setGameInterval] = useState(null);
   const [gameStarted, setGameStarted] = useState(false);
 
+  const initializeGame = async () => {
+    await setSnake(snakeProp);
+    // await generateFood(gridSize, snakeProp);
+  }
+
+  useEffect(()=> {
+    initializeGame()
+  },[])
+
   const startGame = () => {
     if (!gameStarted) {
       setGameStarted(true);
-      setFood(generateFood(gridSize, snake));
+      setFood((prev) => {
+        // return generateFood(gridSize, snake)
+      });
       setGameInterval(setInterval(moveSnake, gameSpeed));
     }
   };
@@ -63,8 +75,9 @@ const App = () => {
     } else {
       newSnake.pop();
     }
-
-    setSnake(newSnake);
+    setSnake((prev) => {
+      return newSnake;
+    });
   };
 
   const handleKeyPress = (event) => {
@@ -88,13 +101,13 @@ const App = () => {
       <Center height="100vh" bg="#abb78a" flexDirection="column" fontFamily="VT323, monospace">
         <VStack spacing={5}>
           <Box className="scores" display="flex" justifyContent="space-between" width="400px">
-            <Text color="yellow" fontSize="2xl">Score: {score}</Text>
-            <Text color="yellow" fontSize="2xl">High Score: {highScore}</Text>
+            <Text color="green" fontSize="2xl">Score: {score}</Text>
+            <Text color="green" fontSize="2xl">High Score: {highScore}</Text>
           </Box>
-          <GameBoard snake={snake} food={food} gridSize={gridSize} />
+          { food && snake && <GameBoard snake={snake} food={food} gridSize={gridSize} />}
           {!gameStarted && (
             <Text id="instruction-text" color="black" textAlign="center" fontSize="xl">
-              Press Space to Start the Game
+              Press Space to Start  the Game
             </Text>
           )}
         </VStack>

@@ -1,22 +1,22 @@
 import React from 'react';
 import { Box } from '@chakra-ui/react';
 
-const Snake = ({ snake,map }) => {
+const Food = ({ food }) => {
   return (
     <>
-      {snake.map((segment, index) => (
+     
         <Box
-          key={index}
-          bg="green"
-          border="1px solid darkgreen"
-          gridColumn={segment.x}
-          gridRow={segment.y}
+          
+          bg="red"
+          border="5px solid red"
+          gridColumn={food.x}
+          gridRow={food.y}
           width="100%"
           height="100%"
         />
-      ))}
+    
     </>
   );
 };
 
-export default Snake;
+export default Food;

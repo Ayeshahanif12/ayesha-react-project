@@ -1,4 +1,5 @@
 export const generateFood = (gridSize, snake) => {
+    debugger;
     let newFood;
     do {
       newFood = {
