@@ -8,20 +8,16 @@ const initialSpeed = 200;
 
 const App = ({title, snakeProp}) => {
   debugger;
-  const [snake, setSnake] = useState();
+ 
   const [direction, setDirection] = useState('right');
-  const [food, setFood] = useState();
+ 
   const [score, setScore] = useState(0);
   const [highScore, setHighScore] = useState(0);
   const [gameSpeed, setGameSpeed] = useState(initialSpeed);
   const [gameInterval, setGameInterval] = useState(null);
   const [gameStarted, setGameStarted] = useState(false);
 
-  const initializeGame = async () => {
-    await setSnake(snakeProp);
-    // await generateFood(gridSize, snakeProp);
-  }
-
+ 
   useEffect(()=> {
     initializeGame()
   },[])
