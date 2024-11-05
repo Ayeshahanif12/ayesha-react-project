@@ -16,7 +16,7 @@ export default function GameOver({ resetGame, score, highScore }) {
         <Text fontSize="2xl" fontWeight="bold">Game Over</Text>
         <Text fontSize="lg">Your Final Score: <span>{score}</span></Text>
         {score > highScore && score > 0 && (
-          <Text fontSize="lg" color="green.500" mt={2}>🏆 You beat the high score! 🏆</Text>
+          <Text fontSize="lg" color="green.500" mt={2}> congratulations: 🏆 You beat the high score! 🏆</Text>
         )}
         <Button mt={4} colorScheme='teal' onClick={resetGame}> Restart Game</Button>
       </Box>
