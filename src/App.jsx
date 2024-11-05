@@ -9,25 +9,27 @@ const initialSpeed = 200;
 
 const App = () => {
   const [snake, setSnake] = useState([{ x: 10, y: 10 }]);
-  const [direction, setDirection] = useState('right');
+  const [direction, setDirection] = useState('right'); // by default
   const [food, setFood] = useState(generateFood(gridSize, [{ x: 10, y: 10 }]));
   const [score, setScore] = useState(0);
   const [highScore, setHighScore] = useState(0);
   const [gameSpeed, setGameSpeed] = useState(initialSpeed);
   const [gameStarted, setGameStarted] = useState(false);
-
+  const [gameOver, setGameOver] = useState(false); // New state for game over
+//mounted method
   useEffect(() => {
     let gameInterval;
-    if (gameStarted) {
+    if (gameStarted && !gameOver) {
       gameInterval = setInterval(() => {
         moveSnake();
       }, gameSpeed);
     }
     return () => clearInterval(gameInterval);
-  }, [gameStarted, direction, gameSpeed, snake]);
+  }, [gameStarted, direction, gameSpeed, snake, gameOver]);
 
   const startGame = () => {
     setGameStarted(true);
+    setGameOver(false); // Reset game over state when starting a new game
   };
 
   const resetGame = () => {
@@ -38,6 +40,7 @@ const App = () => {
     setScore(0);
     setGameSpeed(initialSpeed);
     setGameStarted(false);
+    setGameOver(false); // Reset game over state when resetting the game
   };
 
   const moveSnake = () => {
@@ -60,9 +63,9 @@ const App = () => {
       default:
         break;
     }
-
+// collision will be touching the head
     if (checkCollisions(head, gridSize, newSnake)) {
-      resetGame();
+      setGameOver(true); // Set game over state on collision
       return;
     }
 
@@ -77,7 +80,7 @@ const App = () => {
     }
     setSnake(newSnake);
   };
-
+//from keyboard
   const handleKeyPress = (event) => {
     switch (event.key) {
       case 'ArrowUp':
@@ -113,16 +116,27 @@ const App = () => {
             <Text color="green" fontSize="2xl">Score: {score}</Text>
             <Text color="green" fontSize="2xl">High Score: {highScore}</Text>
           </Box>
+          
           <GameBoard snake={snake} food={food} gridSize={gridSize} />
-          {!gameStarted && (
+          {/* if game not started then display this*/}
+          {!gameStarted && !gameOver && (
             <Text id="instruction-text" color="black" textAlign="center" fontSize="xl">
               Press Space to Start the Game
             </Text>
+          )}
+          {/*the gameover container for my game       */}
+// https://github.com/menard-codes/snakes-game/blob/main/src/SnakesGame/SnakesGame.tsx
+          {gameOver && (
+            <GameOver 
+              resetGame={resetGame}
+              score={score}
+              highScore={highScore}
+            />
           )}
         </VStack>
       </Center>
     </ChakraProvider>
   );
-};
 
-export default App;
+}
+export default App
