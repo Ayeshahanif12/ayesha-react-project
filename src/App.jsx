@@ -46,7 +46,8 @@ const App = () => {
   const moveSnake = () => {
     const newSnake = [...snake];
     const head = { ...newSnake[0] };
-
+  
+    // Update head position based on direction
     switch (direction) {
       case 'up':
         head.y -= 1;
@@ -63,21 +64,28 @@ const App = () => {
       default:
         break;
     }
-// collision will be touching the head
+  
+    // Check for collisions
     if (checkCollisions(head, gridSize, newSnake)) {
-      setGameOver(true); // Set game over state on collision
+      setGameOver(true);
       return;
     }
-
+  
+    // Add new head to the snake
     newSnake.unshift(head);
+  
+    // Check if the snake has eaten the food
     if (head.x === food.x && head.y === food.y) {
       setScore(prev => prev + 1);
       setFood(generateFood(gridSize, newSnake));
       const newSpeed = increaseSpeed(gameSpeed);
       setGameSpeed(newSpeed);
     } else {
+      // Remove the last segment of the snake if food is not eaten
       newSnake.pop();
     }
+  
+    // Update the snake state
     setSnake(newSnake);
   };
 //from keyboard

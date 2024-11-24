@@ -15,7 +15,7 @@ export const generateFood = (gridSize, snake) => {
     return (
       head.x < 1 || head.x > gridSize || 
       head.y < 1 || head.y > gridSize ||
-      snake.filter((_, index) => index !== 0).some(segment => segment.x === head.x && segment.y === head.y)
+      snake.slice(1).some(segment => segment.x === head.x && segment.y === head.y) // Check against all segments except the head
     );
   };
   
