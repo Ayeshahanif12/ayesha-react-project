@@ -8,7 +8,13 @@
     "build": "vite build",
     "start": "react-scripts start",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+  
+  "predeploy": "npm run build",
+  "deploy": "gh-pages -d build",
+  "test": "react-scripts test",
+  "eject": "react-scripts eject"
+
   },
   "dependencies": {
     "@chakra-ui/react": "^2.10.4",
@@ -27,7 +33,12 @@
     "eslint-plugin-react": "^7.37.0",
     "eslint-plugin-react-hooks": "^5.1.0-rc.0",
     "eslint-plugin-react-refresh": "^0.4.12",
+    "gh-pages": "^6.2.0",
     "globals": "^15.9.0",
     "vite": "^5.4.8"
-  }
+  },
+  
+    "homepage": "https://<ayesha-react-project>.github.io/<repository-name>"
+
+  
 }
